@@ -1,3 +1,7 @@
+const THEME_FOOD = "food";
+const THEME_RPG = "rpg";
+const THEME_RANDOM = "random";
+
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -129,13 +133,13 @@ const getCards = (difficulty, theme) => {
   let imageList = null;
 
   switch (theme) {
-    case "food":
+    case THEME_FOOD:
       imageList = foodImages;
       break;
-    case "rpg":
+    case THEME_RPG:
       imageList = rpgImages;
       break;
-    case "random":
+    case THEME_RANDOM:
       imageList = rpgImages;
       break;
   }
