@@ -145,9 +145,9 @@ const getCards = (difficulty, theme) => {
   }
 
   for (let i = 1; i <= difficulty; i++) {
-    let imageIndex = getRandomBetween(0, imageList.length);
+    let imageIndex = getIconIndex(-1, cards, imageList.length);
     let card = {
-      id: i,
+      id: imageIndex,
       image: imageList[imageIndex],
     };
     cards.push(card);
@@ -161,6 +161,24 @@ const shuffleCards = (cards) => {
     const j = Math.floor(Math.random() * i + 1);
     [cards[i], cards[j]] = [cards[j], cards[i]];
   }
+};
+
+const getIconIndex = (iconIndex, cards, length) => {
+  // TO DO: Add logic to get unique icons
+  let newIconIndex = getRandomBetween(0, length - 1);
+
+  if (iconIndex === newIconIndex) {
+    return getIconIndex(iconIndex, cards, length);
+  }
+
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
+    if (card.id === newIconIndex) {
+      return getIconIndex(newIconIndex, cards, length);
+    }
+  }
+
+  return newIconIndex;
 };
 
 function getRandomBetween(min, max) {

@@ -4,7 +4,7 @@
   "description": "Backend for the memory game",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js"
+    "start": "node --watch main.js"
   },
   "author": "Jose Canizales",
   "license": "MIT",
