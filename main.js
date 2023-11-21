@@ -141,9 +141,10 @@ const getCards = (difficulty, theme) => {
   }
 
   for (let i = 1; i <= difficulty; i++) {
+    let imageIndex = getRandomBetween(0, imageList.length);
     let card = {
       id: i,
-      image: imageList[getRandomBetween(0, imageList.length)],
+      image: imageList[imageIndex],
     };
     cards.push(card);
   }
