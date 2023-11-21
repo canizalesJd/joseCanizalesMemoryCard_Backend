@@ -1,0 +1,14 @@
+{
+  "name": "josecanizalesmemorycard_backend",
+  "version": "1.0.0",
+  "description": "Backend for the memory game",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "author": "Jose Canizales",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
