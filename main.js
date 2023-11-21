@@ -1,6 +1,6 @@
 const THEME_FOOD = "food";
 const THEME_RPG = "rpg";
-const THEME_RANDOM = "random";
+const THEME_CHARACTHERS = "characters";
 
 const express = require("express");
 const cors = require("cors");
@@ -100,6 +100,59 @@ const rpgImages = [
   "rpg/Sword.png",
 ];
 
+const charactersImages = [
+  "characters/char_01.png",
+  "characters/char_02.png",
+  "characters/char_03.png",
+  "characters/char_04.png",
+  "characters/char_05.png",
+  "characters/char_06.png",
+  "characters/char_07.png",
+  "characters/char_08.png",
+  "characters/char_09.png",
+  "characters/char_10.png",
+  "characters/char_11.png",
+  "characters/char_12.png",
+  "characters/char_13.png",
+  "characters/char_14.png",
+  "characters/char_15.png",
+  "characters/char_16.png",
+  "characters/char_17.png",
+  "characters/char_18.png",
+  "characters/char_19.png",
+  "characters/char_20.png",
+  "characters/char_21.png",
+  "characters/char_22.png",
+  "characters/char_23.png",
+  "characters/char_24.png",
+  "characters/char_25.png",
+  "characters/char_26.png",
+  "characters/char_27.png",
+  "characters/char_28.png",
+  "characters/char_29.png",
+  "characters/char_30.png",
+  "characters/char_31.png",
+  "characters/char_32.png",
+  "characters/char_33.png",
+  "characters/char_34.png",
+  "characters/char_35.png",
+  "characters/char_36.png",
+  "characters/char_37.png",
+  "characters/char_38.png",
+  "characters/char_39.png",
+  "characters/char_40.png",
+  "characters/char_41.png",
+  "characters/char_42.png",
+  "characters/char_43.png",
+  "characters/char_44.png",
+  "characters/char_45.png",
+  "characters/char_46.png",
+  "characters/char_47.png",
+  "characters/char_48.png",
+  "characters/char_49.png",
+  "characters/char_50.png",
+];
+
 app.get("/cards/:difficulty/:theme", (req, res) => {
   let cards = [];
   let data = { cards: cards };
@@ -139,8 +192,8 @@ const getCards = (difficulty, theme) => {
     case THEME_RPG:
       imageList = rpgImages;
       break;
-    case THEME_RANDOM:
-      imageList = rpgImages;
+    case THEME_CHARACTHERS:
+      imageList = charactersImages;
       break;
   }
 
