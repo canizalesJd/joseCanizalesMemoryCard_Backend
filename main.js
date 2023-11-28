@@ -2,10 +2,14 @@ const THEME_FOOD = "food";
 const THEME_RPG = "rpg";
 const THEME_CHARACTHERS = "characters";
 
+const axios = require("axios");
 const express = require("express");
 const cors = require("cors");
 const app = express();
 const port = 3000;
+
+const databaseUrl =
+  "https://josecanizalesmemorycard-default-rtdb.firebaseio.com/";
 
 app.use(cors());
 
@@ -177,6 +181,27 @@ app.get("/cards/:difficulty/:theme", (req, res) => {
   res.send(JSON.stringify(data));
 });
 
+app.get("/scores", (req, res) => {
+  const url = `${databaseUrl}scores.json`;
+  axios
+    .get(url)
+    .then(function (response) {
+      let scores = [];
+      for (const key in response.data) {
+        const score = response.data[key];
+        scores.push(score);
+      }
+      const result = scores.sort(
+        (firstScore, secondScore) => secondScore.score - firstScore.score
+      );
+      res.send(JSON.stringify(result.slice(0, 10)));
+    })
+    .catch(function (error) {
+      console.log(error);
+      res.send("Failed to get the scores data");
+    });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
@@ -217,7 +242,6 @@ const shuffleCards = (cards) => {
 };
 
 const getIconIndex = (iconIndex, cards, length) => {
-  // TO DO: Add logic to get unique icons
   let newIconIndex = getRandomBetween(0, length - 1);
 
   if (iconIndex === newIconIndex) {
