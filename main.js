@@ -8,6 +8,11 @@ const cors = require("cors");
 const app = express();
 const port = 3000;
 
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.raw());
+
 const databaseUrl =
   "https://josecanizalesmemorycard-default-rtdb.firebaseio.com/";
 
@@ -192,13 +197,28 @@ app.get("/scores", (req, res) => {
         scores.push(score);
       }
       const result = scores.sort(
-        (firstScore, secondScore) => secondScore.score - firstScore.score
+        (firstScore, secondScore) => firstScore.score - secondScore.score
       );
       res.send(JSON.stringify(result.slice(0, 10)));
     })
     .catch(function (error) {
       console.log(error);
       res.send("Failed to get the scores data");
+    });
+});
+
+app.post("/score", async (req, res) => {
+  const url = `${databaseUrl}scores.json`;
+  let score = req.body;
+  axios
+    .post(url, score)
+    .then(function (response) {
+      console.log(response);
+      res.send("Scores saved successfully");
+    })
+    .catch(function (error) {
+      console.log(error);
+      res.send("Failed to save the score");
     });
 });
 
